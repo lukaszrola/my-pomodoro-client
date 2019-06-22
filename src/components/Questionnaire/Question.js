@@ -13,16 +13,17 @@ const question = (props) => {
     }
 
     const choiceIsCorrect = (choice) => {
-        return choice === props.question.answer;
+        return choice === props.answer;
     }
 
-    const answers = props.question.variants.slice();
-    answers.push(props.question.answer);
+    const answers = props.variants.slice();
+    answers.push(props.answer);
     answers.sort((a, b) => { return 0.5 - Math.random() });
     const variantsToDisplay = displayVariants(answers);
+
     return (
         <div>
-            <strong>{props.question.question}</strong>
+            <strong>{props.question}</strong>
             {variantsToDisplay}
         </div>)
 

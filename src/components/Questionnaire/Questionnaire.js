@@ -64,7 +64,7 @@ class Questionnaire extends React.Component{
       let questionnaire = <div>You answered correctly to all questions</div>;
       
       if(this.state.remainingQuestions > 0){
-        questionnaire = (<Question question={questionData} 
+        questionnaire = (<Question {...questionData} 
                            answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)}/>);
       }
        
