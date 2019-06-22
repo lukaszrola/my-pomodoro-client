@@ -1,10 +1,8 @@
 import React from 'react';
 
-class Answer extends React.Component{
-  render(){
+const answer = (props) => {
     return (
-      <div onClick={() => this.props.clicked(this.props.answer)}>{this.props.answer}</div>)
-  }
+      <div onClick={() => props.clicked(props.answer)}>{props.answer}</div>)
 }
 
-export default Answer;
+export default answer;

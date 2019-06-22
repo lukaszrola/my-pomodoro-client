@@ -1,32 +1,31 @@
 import React from 'react';
 import Answer from './Answer';
 
-class Question extends React.Component {
-    handleChoice(choice){
-      this.props.answered(this.choiceIsCorrect(choice));
-    }
-    
-    choiceIsCorrect(choice){
-      return choice === this.props.question.answer;
-    }
-  
-    displayAnswers(answers){
-      return answers.map(a => <Answer key={a} answer={a} clicked={(choice) => this.handleChoice(choice)}/>
-      );
-    }
-    
-    render(){
-      const questionData = this.props.question;
-      const answers = questionData.variants.slice();
-      answers.push(questionData.answer);
-      answers.sort((a,b) => {return 0.5 - Math.random()});
-      const displayAnswers = this.displayAnswers(answers);
-      return (
-        <div>
-          <strong>{questionData.question}</strong>
-          {displayAnswers}
-        </div>)
-    }
-  }
 
-  export default Question;
+const question = (props) => {
+
+    const displayVariants = (answers) => {
+        return answers.map(a => <Answer key={a} answer={a} clicked={(choice) => handleChoice(choice)} />);
+    }
+
+    const handleChoice = (choice) => {
+        props.answered(choiceIsCorrect(choice));
+    }
+
+    const choiceIsCorrect = (choice) => {
+        return choice === props.question.answer;
+    }
+
+    const answers = props.question.variants.slice();
+    answers.push(props.question.answer);
+    answers.sort((a, b) => { return 0.5 - Math.random() });
+    const variantsToDisplay = displayVariants(answers);
+    return (
+        <div>
+            <strong>{props.question.question}</strong>
+            {variantsToDisplay}
+        </div>)
+
+}
+
+export default question;
