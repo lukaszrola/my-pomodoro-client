@@ -38,7 +38,8 @@ class TimerPanel extends React.Component {
             timerPanel = <Timer
                             hours={this.state.hours}
                             minutes={this.state.minutes}
-                            seconds={this.state.seconds}/>
+                            seconds={this.state.seconds}
+                            timesUp={this.props.timesUp}/>
         }
 
             return (timerPanel)

@@ -67,6 +67,9 @@ class Questionnaire extends React.Component{
         questionnaire = (<Question {...questionData} 
                            answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)}/>);
       }
+      else{
+          this.props.answeredToQuestions();
+      }
        
       return (questionnaire);
     }

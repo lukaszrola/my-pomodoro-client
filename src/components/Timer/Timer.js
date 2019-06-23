@@ -7,14 +7,16 @@ class Timer extends React.Component{
       const minutes = this.numberValue(props.minutes);
       const seconds = this.numberValue(props.seconds);
       let totalSeconds = 3600 * hours + 60 * minutes + 1 * seconds;
-      
+
       this.state = {totalSeconds: totalSeconds,
                     paused: false,
-                    initialTime: totalSeconds};
+                    initialTime: totalSeconds,
+                    intervalId: null};
     }
 
     componentDidMount(){
-      setInterval(() => this.tick(), 1000);
+      const intervalId = setInterval(() => this.tick(), 1000);
+      this.setState({intervalId: intervalId});
     }
 
     numberValue(value){
@@ -25,6 +27,10 @@ class Timer extends React.Component{
       if(!this.state.paused && this.state.totalSeconds > 0){ 
         const decreasedTime = this.state.totalSeconds - 1;
         this.setState({totalSeconds: decreasedTime});
+      }
+      else{
+        clearInterval(this.state.intervalId);
+        this.props.timesUp();
       }
     }
     

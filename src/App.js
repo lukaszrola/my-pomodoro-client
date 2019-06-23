@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import Questionnaire from './components/Questionnaire/Questionnaire';
-import TimerPanel from './components/Timer/TimerPanel';
+import PomodoroPanel from './components/PomodoroPanel/PomodoroPanel';
 
 function App() {
   return (
     <div className="App">
-      <TimerPanel />
-      <Questionnaire />
+      <PomodoroPanel />
     </div>
   );
 }
