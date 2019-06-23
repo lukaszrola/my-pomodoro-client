@@ -3,13 +3,22 @@ import React from 'react';
 class Timer extends React.Component{
     constructor(props){
       super(props);
-      let totalSeconds = 3600 * props.hours + 60 * props.minutes + 1 * props.seconds;
+      const hours = this.numberValue(props.hours);
+      const minutes = this.numberValue(props.minutes);
+      const seconds = this.numberValue(props.seconds);
+      let totalSeconds = 3600 * hours + 60 * minutes + 1 * seconds;
+      
       this.state = {totalSeconds: totalSeconds,
                     paused: false,
                     initialTime: totalSeconds};
     }
+
     componentDidMount(){
       setInterval(() => this.tick(), 1000);
+    }
+
+    numberValue(value){
+      return isNaN(value) ? 0 : value;
     }
     
     tick() {

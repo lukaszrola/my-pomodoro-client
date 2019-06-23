@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import Timer from './components/Timer/Timer';
 import Questionnaire from './components/Questionnaire/Questionnaire';
+import TimerPanel from './components/Timer/TimerPanel';
+
 function App() {
   return (
     <div className="App">
-      <Timer hours='0' minutes='5' seconds='0'/>
+      <TimerPanel />
       <Questionnaire />
     </div>
   );
