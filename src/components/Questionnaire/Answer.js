@@ -2,7 +2,7 @@ import React from 'react';
 
 const answer = (props) => {
     return (
-      <div onClick={() => props.clicked(props.answer)}>{props.answer}</div>)
+      <button className="btn btn-outline-secondary" onClick={() => props.clicked(props.answer)}>{props.answer}</button>)
 }
 
 export default answer;

@@ -24,7 +24,10 @@ const question = (props) => {
     return (
         <div>
             <strong>{props.question}</strong>
-            {variantsToDisplay}
+            <div>
+                {variantsToDisplay}
+            </div>
+
         </div>)
 
 }
