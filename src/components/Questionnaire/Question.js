@@ -22,8 +22,8 @@ const question = (props) => {
     const variantsToDisplay = displayVariants(answers);
 
     return (
-        <div className="w-75 p-3">
-            <div className="p-3 mb-2 bg-secondary text-white">
+        <div>
+            <div className="p-3 mb-2 bg-info text-white">
                 <h1><strong>{props.question}</strong></h1>
             </div>
             <div className="btn-group-vertical">
