@@ -28,7 +28,7 @@ class Timer extends React.Component{
         const decreasedTime = this.state.totalSeconds - 1;
         this.setState({totalSeconds: decreasedTime});
       }
-      else{
+      else if(this.state.totalSeconds === 0){
         clearInterval(this.state.intervalId);
         this.props.timesUp();
       }
