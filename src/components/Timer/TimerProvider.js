@@ -9,7 +9,7 @@ const timerPanel = (props) => {
 
     return (
         <div>
-            <h1>Set Pomodoro time</h1>
+            <b className="display-2 font-weight-bolder">Set Pomodoro time</b>
             <div className={"m-2"}>
                 <button type="button" className="btn btn-info btn-lg m-4"
                     onClick={() => runPomodoroWithNMinutes(5)}><b>SHORT</b> (5 minutes)</button>
