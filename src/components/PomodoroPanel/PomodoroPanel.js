@@ -28,8 +28,11 @@ class PomodoroPanel extends React.Component {
             return <TimerPanel timesUp={this.timesUp} />;
         else if (!this.state.chosenCategory) {
             axios.get("/categories.json")
-                .then(response => this.setState({categories: response.data.categories}));
-            return <DomainChooser categories={this.state.categories} onChoice={this.handleDomainChoice} />;
+                .then(response => this.setState({ categories: response.data.categories }));
+            return <DomainChooser
+                onSkip={this.answeredToQuestions}
+                categories={this.state.categories}
+                onChoice={this.handleDomainChoice} />;
         } else {
             return <Questionnaire category={this.state.chosenCategory} answeredToQuestions={this.answeredToQuestions} />;
         }
