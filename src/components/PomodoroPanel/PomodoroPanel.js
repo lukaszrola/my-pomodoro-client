@@ -8,7 +8,7 @@ class PomodoroPanel extends React.Component {
     state = {
         iterationFinished: false,
         categories: [],
-        chosenDomain: ''
+        chosenCategory: ''
     }
 
     timesUp = () => {
@@ -20,18 +20,18 @@ class PomodoroPanel extends React.Component {
     }
 
     handleDomainChoice = (choice) => {
-        this.setState({ chosenDomain: choice });
+        this.setState({ chosenCategory: choice });
     }
 
     displayPanel() {
         if (!this.state.iterationFinished)
             return <TimerPanel timesUp={this.timesUp} />;
-        else if (!this.state.chosenDomain) {
+        else if (!this.state.chosenCategory) {
             axios.get("/categories.json")
                 .then(response => this.setState({categories: response.data.categories}));
             return <DomainChooser categories={this.state.categories} onChoice={this.handleDomainChoice} />;
         } else {
-            return <Questionnaire answeredToQuestions={this.answeredToQuestions} />;
+            return <Questionnaire category={this.state.chosenCategory} answeredToQuestions={this.answeredToQuestions} />;
         }
     }
 

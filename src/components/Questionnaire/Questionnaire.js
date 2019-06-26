@@ -1,25 +1,34 @@
 import React from 'react';
 import Question from './Question';
+import axios from '../../axios-questions';
 
 class Questionnaire extends React.Component {
     state = {
-        questions: [
-            {
-                question: 'UBS logo contains',
-                answer: 'Three keys',
-                variants: ['One Key', 'Rainbow', 'Vault'],
-                answeredCorrectly: false
-            },
-            {
-                question: 'CEO of UBS is',
-                answer: 'Sergio Ermotti',
-                variants: ['Donald Trump', 'David Beckham', 'Kim Dzong Un'],
-                answeredCorrectly: false
-            }
-        ],
+        questions: [],
         currentQuestion: 0,
-        numberOfQuestions: 2,
-        remainingQuestions: 2
+        numberOfQuestions: 0,
+        remainingQuestions: 0
+    }
+
+    componentDidMount() {
+        axios.get("/getQuestions.json?numberOfWords=5&category="+ this.props.category)
+            .then(response => {
+                const questions = response.data.questions
+                    .map(question => this.buildQuestion(question));
+                const numberOfQuestions = questions.length;
+                const remainingQuestions = questions.length;
+
+                this.setState({
+                    questions: questions,
+                    currentQuestion: 0,
+                    numberOfQuestions: numberOfQuestions,
+                    remainingQuestions: remainingQuestions
+                });
+            })
+    }
+
+    buildQuestion(question){
+        return {...question, answeredCorrectly: false};
     }
 
     handleAnswerChoice(answerWasCorrect) {
@@ -79,7 +88,10 @@ class Questionnaire extends React.Component {
         const questionData = this.state.questions[this.state.currentQuestion];
         let questionnaire = null;
 
-        if (this.state.remainingQuestions > 0) {
+        if(this.state.numberOfQuestions === 0){
+            questionnaire = <div>Questions are loading</div>
+        }
+        else if (this.state.remainingQuestions > 0) {
             questionnaire = this.showQuestion(questionData);
         }
         else {
