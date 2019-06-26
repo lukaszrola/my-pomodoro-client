@@ -24,7 +24,7 @@ class Question extends React.Component {
             selectedAnswer: choice,
             correct: choiceWasCorrect
         });
-        setTimeout(() => this.props.answered(choiceWasCorrect), 2000);
+        setTimeout(() => this.props.answered(choiceWasCorrect), 1000);
     }
 
     choiceIsCorrect = (choice) => {

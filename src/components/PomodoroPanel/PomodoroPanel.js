@@ -2,11 +2,13 @@ import React from 'react';
 import TimerPanel from '../Timer/TimerPanel';
 import Questionnaire from '../Questionnaire/Questionnaire';
 import DomainChooser from '../DomainChooser/DomainChooser';
+import axios from '../../axios-questions';
 
 class PomodoroPanel extends React.Component {
     state = {
         iterationFinished: false,
-        chosenDomain: ''        
+        categories: [],
+        chosenDomain: ''
     }
 
     timesUp = () => {
@@ -18,15 +20,17 @@ class PomodoroPanel extends React.Component {
     }
 
     handleDomainChoice = (choice) => {
-        this.setState({chosenDomain: choice});
+        this.setState({ chosenDomain: choice });
     }
 
     displayPanel() {
-        if(!this.state.iterationFinished)
+        if (!this.state.iterationFinished)
             return <TimerPanel timesUp={this.timesUp} />;
-        else if(!this.state.chosenDomain){
-            return <DomainChooser onChoice={this.handleDomainChoice}/>;
-        } else{
+        else if (!this.state.chosenDomain) {
+            axios.get("/categories.json")
+                .then(response => this.setState({categories: response.data.categories}));
+            return <DomainChooser categories={this.state.categories} onChoice={this.handleDomainChoice} />;
+        } else {
             return <Questionnaire answeredToQuestions={this.answeredToQuestions} />;
         }
     }

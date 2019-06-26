@@ -1,7 +1,7 @@
 import React from 'react';
 
 const domainChooser = (props) => {
-    const domains = ['banking', 'ubs policy', 'english words', 'polish words']
+    const domains = props.categories;
     const domainsToDisplay = domains.map(a =>
         <button className="btn btn-info btn-lg m-4" onClick={() => props.onChoice(a)}>{a}</button>);
 
