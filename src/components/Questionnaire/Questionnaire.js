@@ -60,7 +60,13 @@ class Questionnaire extends React.Component {
     }
 
     showQuestion(questionData) {
-        return <Question {...questionData}
+        const variants = questionData.variants.slice();
+        variants.push(questionData.answer)
+        variants.sort((a, b) => { return 0.5 - Math.random() });
+        return <Question
+            question={questionData.question}
+            correctAnswer={questionData.answer}
+            variants={variants}
             answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)} />;
     }
 

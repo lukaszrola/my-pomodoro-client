@@ -14,28 +14,21 @@ class Question extends React.Component {
     }
 
     displayVariants = () => {
-        const answers = this.prepareAnswers();
+        const answers = this.props.variants;
         return answers.map(a => <Answer color={this.calculateColor(a)} key={a} answer={a} clicked={(choice) => this.handleChoice(choice)} />);
-    }
-    prepareAnswers() {
-        const answers = this.props.variants.slice();
-        answers.push(this.props.answer);
-        if (!this.state.selectedAnswer) {
-            answers.sort((a, b) => { return 0.5 - Math.random() });
-        }
-        return answers;
     }
 
     handleChoice = (choice) => {
+        let choiceWasCorrect = this.choiceIsCorrect(choice);
         this.setState({
             selectedAnswer: choice,
-            correct: choice === this.props.answer
+            correct: choiceWasCorrect
         });
-        setTimeout(() => this.props.answered(this.choiceIsCorrect(choice)), 2000);
+        setTimeout(() => this.props.answered(choiceWasCorrect), 2000);
     }
 
     choiceIsCorrect = (choice) => {
-        return choice === this.props.answer;
+        return choice === this.props.correctAnswer;
     }
 
     calculateColor(answer) {
