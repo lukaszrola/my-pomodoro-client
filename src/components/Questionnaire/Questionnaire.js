@@ -1,5 +1,6 @@
 import React from 'react';
 import Question from './Question';
+import FinalPage from './FinalPage'
 import axios from '../../axios-questions';
 
 class Questionnaire extends React.Component {
@@ -107,7 +108,7 @@ class Questionnaire extends React.Component {
 
     finishQuestionnaire() {
         setTimeout(() => this.props.answeredToQuestions(), 4000);
-        return <div>You answered correctly to all questions</div>;
+        return (<FinalPage />);
     }
 
     render() {

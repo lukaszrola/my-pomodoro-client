@@ -64,14 +64,22 @@ class Timer extends React.Component {
     this.setState({ totalSeconds: resetTime });
   }
 
+  handleSkipTimer(){
+    this.setState({totalSeconds: 0})
+  }
+
   render() {
     const pauseButton = <button className="btn btn-info btn-lg m-4" onClick={() => this.handlePause()}>Pause</button>;
     const startButton = <button className="btn btn-info btn-lg m-4" onClick={() => this.handleStart()}>Start</button>;
     return (
       <div>
-        <div className="display-2"><strong>{this.getHours()} : {this.getMinutes()} : {this.getSeconds()}</strong></div>
-        {this.state.paused ? startButton : pauseButton}
-        <button className="btn btn-info btn-lg m-4" onClick={() => this.handleReset()}>Reset</button>
+        <div>
+          <p className="display-3 font-weight-bolder text-info">Time is started</p>
+          <div className="display-3 text-info"><strong>{this.getHours()} : {this.getMinutes()} : {this.getSeconds()}</strong></div>
+          {this.state.paused ? startButton : pauseButton}
+          <button className="btn btn-info btn-lg m-4" onClick={() => this.handleReset()}>Reset</button>
+          <button className="btn btn-info btn-lg m-4" onClick={() => this.handleSkipTimer()}>Skip timer</button>
+        </div>
       </div>
     )
   }

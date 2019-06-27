@@ -3,4 +3,11 @@
     font-weight: bolder;
     color: coral;
     text-shadow: 1px;
+    text-align: center;
+    display: flex;
+}
+
+.Image{
+    width: 100px;
+    height: 100px;
 }
