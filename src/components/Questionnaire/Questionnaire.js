@@ -8,7 +8,8 @@ class Questionnaire extends React.Component {
         questions: [],
         currentQuestion: 0,
         numberOfQuestions: 0,
-        remainingQuestions: 0
+        remainingQuestions: 0,
+        numberOfAtempts: 1,
     }
 
     componentDidMount() {
@@ -22,6 +23,7 @@ class Questionnaire extends React.Component {
                 this.setState({
                     questions: questions,
                     currentQuestion: 0,
+                    numberOfAtempts: 1,
                     numberOfQuestions: numberOfQuestions,
                     remainingQuestions: remainingQuestions
                 });
@@ -43,7 +45,8 @@ class Questionnaire extends React.Component {
 
         if (remainingQuestions > 0) {
             const newCurrentQuestion = this.findNextQuestion();
-            this.setState({ currentQuestion: newCurrentQuestion });
+            const atempts = this.state.numberOfAtempts + 1;
+            this.setState({ currentQuestion: newCurrentQuestion,numberOfAtempts: atempts});
         }
     }
 
@@ -81,8 +84,9 @@ class Questionnaire extends React.Component {
     }
 
     finishQuestionnaire() {
-        setTimeout(() => this.props.answeredToQuestions(), 4000);
-        return (<FinalPage />);
+        setTimeout(() => this.props.answeredToQuestions(), 6000);
+        const finalScore = this.state.numberOfQuestions/ this.state.numberOfAtempts;
+        return (<FinalPage score={finalScore}/>);
     }
 
     render() {
