@@ -46,6 +46,16 @@ class Questionnaire extends React.Component {
         }
     }
 
+    getStatistics() {
+        let total = this.state.questions.length;
+        let answered = this.state.questions.filter(q => q.answeredCorrectly === true).length;
+        return {
+            total: total,
+            answered: answered,
+            remaining: total - answered
+        }
+    }
+
     findNextQuestion() {
         let newCurrentQuestion = this.findNextQuestionToAnswer(this.state.currentQuestion);
         return newCurrentQuestion;
@@ -72,11 +82,27 @@ class Questionnaire extends React.Component {
         const variants = questionData.variants.slice();
         variants.push(questionData.answer)
         variants.sort((a, b) => { return 0.5 - Math.random() });
-        return <Question
-            question={questionData.question}
-            correctAnswer={questionData.answer}
-            variants={variants}
-            answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)} />;
+
+        let statistics = this.getStatistics();
+
+        let doneBarWidth = Math.round(100 * (statistics.answered / statistics.total));
+        //let todoBarWidth = 100 - doneBarWidth;
+
+
+        return <div>
+            <Question
+                question={questionData.question}
+                correctAnswer={questionData.answer}
+                variants={variants}
+                answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)}/>
+
+            <div style={{marginTop: 20}} className="d-flex justify-content-center">
+                <div className="progress" style={{width: 1000}}>
+                    <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: doneBarWidth + '%'}}>
+                    </div>
+                </div>
+            </div>
+        </div>;
     }
 
     finishQuestionnaire() {
