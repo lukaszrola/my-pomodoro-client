@@ -23,7 +23,7 @@ class PomodoroPanel extends React.Component {
     }
 
     answeredToQuestions = () => {
-        this.setState({ iterationFinished: false });
+        window.location.href = "/";
     }
 
     handleDomainChoice = (choice) => {
