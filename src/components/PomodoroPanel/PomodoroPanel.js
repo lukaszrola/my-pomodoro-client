@@ -5,6 +5,12 @@ import DomainChooser from '../DomainChooser/DomainChooser';
 import axios from '../../axios-questions';
 
 class PomodoroPanel extends React.Component {
+    constructor () {
+        super()
+        axios.get("/categories.json")
+            .then(response => this.setState({ categories: response.data.categories }));
+    }
+
     state = {
         iterationFinished: false,
         categories: [],
@@ -27,8 +33,6 @@ class PomodoroPanel extends React.Component {
         if (!this.state.iterationFinished)
             return <TimerPanel timesUp={this.timesUp} />;
         else if (!this.state.chosenCategory) {
-            axios.get("/categories.json")
-                .then(response => this.setState({ categories: response.data.categories }));
             return <DomainChooser
                 onSkip={this.answeredToQuestions}
                 categories={this.state.categories}
