@@ -27,7 +27,8 @@ class Questionnaire extends React.Component {
                     numberOfQuestions: numberOfQuestions,
                     remainingQuestions: remainingQuestions
                 });
-            })
+            }).finally(response => {
+        })
     }
 
     buildQuestion(question){
@@ -90,8 +91,6 @@ class Questionnaire extends React.Component {
         let statistics = this.getStatistics();
 
         let doneBarWidth = Math.round(100 * (statistics.answered / statistics.total));
-        //let todoBarWidth = 100 - doneBarWidth;
-
 
         return <div>
             <Question
@@ -120,7 +119,10 @@ class Questionnaire extends React.Component {
         let questionnaire = null;
 
         if(this.state.numberOfQuestions === 0){
-            questionnaire = <div>Questions are loading</div>
+            questionnaire =
+                <div style={{marginTop: 40}} className="spinner-border text-primary" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
         }
         else if (this.state.remainingQuestions > 0) {
             questionnaire = this.showQuestion(questionData);
