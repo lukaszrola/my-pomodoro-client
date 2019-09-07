@@ -15,7 +15,7 @@ class Questionnaire extends React.Component {
     componentDidMount() {
         axios.get("/getQuestions.json?numberOfWords=5&category="+ this.props.category)
             .then(response => {
-                const questions = response.data.questions
+                const questions = response.data
                     .map(question => this.buildQuestion(question));
                 const numberOfQuestions = questions.length;
                 const remainingQuestions = questions.length;

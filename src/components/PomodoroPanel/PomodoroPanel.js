@@ -8,12 +8,12 @@ class PomodoroPanel extends React.Component {
     constructor () {
         super()
         axios.get("/categories.json")
-            .then(response => this.setState({ categories: response.data.categories }));
+            .then(response => this.setState({ categories: response.data }));
     }
 
     state = {
         iterationFinished: false,
-        categories: [],
+        categories: ['banking'],
         chosenCategory: ''
     }
 

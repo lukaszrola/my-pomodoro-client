@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Toolbar.module.css'
-import tomatoImage from '../../images/tomato.jpg'
+import tomatoImage from '../../images/tomato.png'
 
 const toolbar = (props) => {
     return <div className={classes.Toolbar}>
