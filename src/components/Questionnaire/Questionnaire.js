@@ -13,7 +13,7 @@ class Questionnaire extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("/getQuestions.json?numberOfWords=5&category="+ this.props.category)
+        axios.get("/questions?numberOfWords=5&category="+ this.props.category)
             .then(response => {
                 const questions = response.data
                     .map(question => this.buildQuestion(question));
