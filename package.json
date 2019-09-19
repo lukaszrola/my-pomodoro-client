@@ -14,7 +14,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker-build": "docker build -t rolalukasz1992/my-pomodoro:0.1.0 .",
+    "docker-push": "docker push rolalukasz1992/my-pomodoro:0.1.0"
   },
   "eslintConfig": {
     "extends": "react-app"
