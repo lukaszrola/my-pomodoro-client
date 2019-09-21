@@ -1,5 +1,5 @@
 {
-  "name": "my-pomodoro",
+  "name": "my-pomodoro-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,8 +15,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docker-build": "docker build -t rolalukasz1992/my-pomodoro:0.1.0 .",
-    "docker-push": "docker push rolalukasz1992/my-pomodoro:0.1.0"
+    "docker-build": "docker build -t rolalukasz1992/my-pomodoro-client:0.1.0 .",
+    "docker-push": "docker push rolalukasz1992/my-pomodoro-client:0.1.0"
   },
   "eslintConfig": {
     "extends": "react-app"
