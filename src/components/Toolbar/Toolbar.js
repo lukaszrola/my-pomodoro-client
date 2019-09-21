@@ -6,7 +6,7 @@ const toolbar = (props) => {
     return <div className={classes.Toolbar}>
         <div className="w-25"></div>
         <div className="w-50">
-            <p className="display-2 font-weight-bolder font-italic">Break & Learn</p>
+            <p className="display-2 font-weight-bolder font-italic">My pomodoro</p>
         </div>
         <div className="w-25">
             <img className={classes.Image} src={tomatoImage} alt="pomodoro" />
