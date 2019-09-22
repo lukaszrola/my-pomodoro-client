@@ -22,7 +22,7 @@ class TimerPanel extends React.Component {
         this.setState({ seconds: seconds });
     }
 
-    handleSubmit = () => {
+    handleStart = () => {
         this.setState({started: true});
     }
 
@@ -32,14 +32,13 @@ class TimerPanel extends React.Component {
             hoursChanged={(this.hoursChangedHandler)}
             minutesChanged={this.minutesChangedHandler}
             secondsChanged={this.secondsChangedHandler}
-            handleSubmit={this.handleSubmit} />;
+            handleStart={this.handleStart} />;
 
         if (this.state.started){
             timerPanel = <Timer
                             hours={this.state.hours}
                             minutes={this.state.minutes}
-                            seconds={this.state.seconds}
-                            timesUp={this.props.timesUp}/>
+                            seconds={this.state.seconds}/>
         }
 
             return (timerPanel)

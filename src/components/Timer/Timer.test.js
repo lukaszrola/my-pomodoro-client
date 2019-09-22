@@ -5,7 +5,7 @@ import Timer from './Timer';
 
 configure({ adapter: new Adapter() });
 
-describe('<Timer />', () => {
+describe('<Timer /> Test', () => {
     let timer;
     let timeFinished = false;
 
