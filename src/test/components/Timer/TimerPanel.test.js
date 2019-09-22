@@ -1,9 +1,9 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import TimerPanel from './TimerPanel';
-import TimerProvider from './TimerProvider';
-import Timer from './Timer'
+import TimerPanel from '../../../components/Timer/TimerPanel';
+import TimerProvider from '../../../components/Timer/TimerProvider';
+import Timer from '../../../components/Timer/Timer'
 
 configure({ adapter: new Adapter() });
 

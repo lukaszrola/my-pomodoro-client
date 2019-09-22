@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Timer from './Timer';
+import Timer from '../../../components/Timer/Timer';
 
 configure({ adapter: new Adapter() });
 
