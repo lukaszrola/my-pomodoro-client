@@ -31,8 +31,7 @@ class Timer extends React.Component {
       this.setState({ totalSeconds: decreasedTime });
     }
     else if (this.state.totalSeconds === 0) {
-      clearInterval(this.state.intervalId);
-      this.props.timesUp();
+      this.timesUp();
     }
   }
 
@@ -66,6 +65,12 @@ class Timer extends React.Component {
 
   handleSkipTimer(){
     this.setState({totalSeconds: 0})
+    this.timesUp();
+  }
+
+  timesUp(){
+    clearInterval(this.state.intervalId);
+    this.props.timesUp();
   }
 
   render() {
