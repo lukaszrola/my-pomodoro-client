@@ -28,7 +28,7 @@ class PomodoroPanel extends React.Component {
         window.location.href = "/";
     }
 
-    handleDomainChoice = (choice) => {
+    domainChoosen = (choice) => {
         this.setState({ chosenCategory: choice });
     }
 
@@ -39,7 +39,7 @@ class PomodoroPanel extends React.Component {
             return <DomainChooser
                 onSkip={this.answeredToQuestions}
                 categories={this.state.categories}
-                onChoice={this.handleDomainChoice} />;
+                onChoice={this.domainChoosen} />;
         } else {
             return <Questionnaire category={this.state.chosenCategory} answeredToQuestions={this.answeredToQuestions} />;
         }
