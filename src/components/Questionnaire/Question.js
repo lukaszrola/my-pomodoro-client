@@ -46,13 +46,11 @@ class Question extends React.Component {
                     Correct answer!
                 </Alert> :
                 <Alert alertType="alert-danger">
-                    Incorrect answer
+                    Incorrect answer!
                 </Alert>
         }
         else return null;
     }
-
-
 
     render() {
         return (
