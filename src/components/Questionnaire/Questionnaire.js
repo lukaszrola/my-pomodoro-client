@@ -110,8 +110,11 @@ class Questionnaire extends React.Component {
 
     finishQuestionnaire() {
         setTimeout(() => this.props.answeredToQuestions(), 6000);
-        const finalScore = this.state.numberOfQuestions/ this.state.numberOfAtempts;
-        return (<FinalPage score={finalScore}/>);
+        return (<FinalPage score={this.calculateFinalScore()}/>);
+    }
+
+    calculateFinalScore(){
+        return this.state.numberOfQuestions/ this.state.numberOfAtempts;
     }
 
     render() {
