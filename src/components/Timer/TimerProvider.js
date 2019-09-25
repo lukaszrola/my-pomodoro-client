@@ -4,7 +4,7 @@ const timerPanel = (props) => {
 
     const runPomodoroWithNMinutes = (numberOfMinutes) => {
         props.minutesChanged(numberOfMinutes);
-        props.handleSubmit();
+        props.handleStart();
     }
 
     return (
@@ -19,7 +19,7 @@ const timerPanel = (props) => {
                     onClick={() => runPomodoroWithNMinutes(45)}><b>LONG</b>(45 minutes)</button>
             </div>
             <div>
-                <form className="d-flex justify-content-center input-group" onSubmit={() => props.handleSubmit()}>
+                <form className="d-flex justify-content-center input-group" onSubmit={() => props.handleStart()}>
                     <input type="text" name="hours" placeholder="Hours" onChange={(e) => props.hoursChanged(e.target.value)} />
                     <input type="text" name="minutes" placeholder="Minutes" onChange={(e) => props.minutesChanged(e.target.value)} />
                     <input type="text" name="seconds" placeholder="Seconds" onChange={(e) => props.secondsChanged(e.target.value)} />

@@ -1,5 +1,6 @@
 import React from 'react';
 import Answer from './Answer';
+import Alert from './Alert';
 
 
 class Question extends React.Component {
@@ -41,17 +42,15 @@ class Question extends React.Component {
     calculateAlert() {
         if (this.state.selectedAnswer) {
             return this.state.correct ?
-                <div class="alert alert-success" role="alert">
+                <Alert alertType="alert-success">
                     Correct answer!
-                </div> :
-                <div class="alert alert-danger" role="alert">
-                    Incorrect answer
-                </div>
+                </Alert> :
+                <Alert alertType="alert-danger">
+                    Incorrect answer!
+                </Alert>
         }
         else return null;
     }
-
-
 
     render() {
         return (
@@ -65,7 +64,6 @@ class Question extends React.Component {
                 </div>
             </div>)
     }
-
 }
 
 export default Question;
