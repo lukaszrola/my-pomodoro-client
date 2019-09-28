@@ -30,7 +30,7 @@ describe('Pomodoro panel test', () => {
 
     test('When domain choosen should show questionnaire', () => {
         pomodoroPanel.instance().timesUp();
-        pomodoroPanel.instance().domainChoosen('some category');
+        pomodoroPanel.instance().categoryChoosen('some category');
         
         expect(pomodoroPanel.find(TimerPanel)).toHaveLength(0);
         expect(pomodoroPanel.find(DomainChooser)).toHaveLength(0);
