@@ -13,7 +13,7 @@ class Questionnaire extends React.Component {
     }
 
     componentDidMount() {
-        axios.get("/questions?numberOfWords=5&category="+ this.props.category)
+        axios.get(this.props.category+"?numberOfWords=5")
             .then(response => {
                 const questions = response.data
                     .map(question => this.buildQuestion(question));
@@ -84,8 +84,9 @@ class Questionnaire extends React.Component {
     }
 
     showQuestion(questionData) {
-        const variants = questionData.variants.slice();
+        let variants = questionData.variants.slice();
         variants.push(questionData.answer)
+        variants = [...new Set(variants)]
         variants.sort((a, b) => { return 0.5 - Math.random() });
 
         let statistics = this.getStatistics();
