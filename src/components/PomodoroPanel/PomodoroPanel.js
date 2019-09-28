@@ -1,7 +1,7 @@
 import React from 'react';
 import TimerPanel from '../Timer/TimerPanel';
 import Questionnaire from '../Questionnaire/Questionnaire';
-import DomainChooser from '../DomainChooser/DomainChooser';
+import CategoryChooser from '../CategoryChooser/CategoryChooser';
 import alertSound from '../../sounds/alertSound.wav'
 
 class PomodoroPanel extends React.Component {
@@ -28,7 +28,7 @@ class PomodoroPanel extends React.Component {
         if (!this.state.iterationFinished)
             return <TimerPanel timesUp={this.timesUp} />;
         else if (!this.state.chosenCategory) {
-            return <DomainChooser
+            return <CategoryChooser
                 onSkip={this.answeredToQuestions}
                 onChoice={this.categoryChoosen} />;
         } else {
