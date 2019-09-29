@@ -1,9 +1,9 @@
 import React from 'react';
 import Answer from './Answer';
-import Alert from './Alert';
+import ResultAlert from './ResultAlert';
 
 
-class Question extends React.Component {
+class WritingQuestion extends React.Component {
 
     state = {
         selectedAnswer: '',
@@ -41,13 +41,8 @@ class Question extends React.Component {
 
     calculateAlert() {
         if (this.state.selectedAnswer) {
-            return this.state.correct ?
-                <Alert alertType="alert-success">
-                    Correct answer!
-                </Alert> :
-                <Alert alertType="alert-danger">
-                    Incorrect answer!
-                </Alert>
+            return <ResultAlert answered={this.state.selectedAnswer}
+                correct={this.state.correct} />
         }
         else return null;
     }
@@ -58,7 +53,7 @@ class Question extends React.Component {
                 <div className="p-3 mb-2 bg-info text-white">
                     <h1><strong>{this.props.question}</strong></h1>
                 </div>
-                {this.calculateAlert()}
+                <ResultAlert answered={this.state.selectedAnswer}correct={this.state.correct} />}
                 <div className="btn-group-vertical">
                     {this.displayVariants()}
                 </div>
@@ -66,4 +61,4 @@ class Question extends React.Component {
     }
 }
 
-export default Question;
+export default WritingQuestion;
