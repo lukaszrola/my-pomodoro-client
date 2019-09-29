@@ -1,5 +1,6 @@
 import React from 'react';
 import ChoiceQuestion from './ChoiceQuestion';
+import WritingQuestion from './WritingQuestion'
 import FinalPage from './FinalPage'
 import axios from '../../axios-questions';
 
@@ -13,7 +14,7 @@ class Questionnaire extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(this.props.category+"?numberOfWords=5")
+        axios.get(this.props.category + "?numberOfWords=5")
             .then(response => {
                 const questions = response.data
                     .map(question => this.buildQuestion(question));
@@ -28,11 +29,11 @@ class Questionnaire extends React.Component {
                     remainingQuestions: remainingQuestions
                 });
             }).finally(response => {
-        })
+            })
     }
 
-    buildQuestion(question){
-        return {...question, answeredCorrectly: false};
+    buildQuestion(question) {
+        return { ...question, answeredCorrectly: false };
     }
 
     handleAnswerChoice(answerWasCorrect) {
@@ -47,7 +48,7 @@ class Questionnaire extends React.Component {
         if (remainingQuestions > 0) {
             const newCurrentQuestion = this.findNextQuestion();
             const atempts = this.state.numberOfAtempts + 1;
-            this.setState({ currentQuestion: newCurrentQuestion,numberOfAtempts: atempts});
+            this.setState({ currentQuestion: newCurrentQuestion, numberOfAtempts: atempts });
         }
     }
 
@@ -84,6 +85,15 @@ class Questionnaire extends React.Component {
     }
 
     showQuestion(questionData) {
+        if (this.props.category === "/writingQuestions") {
+            return this.showWritingQuestion(questionData);
+        }
+        if (this.props.category === "/motherLanguageChoiceQuestions" || this.props.category === "/foreignLanguageChoiceQuestions") {
+            return this.showChoiceQuestion(questionData);
+        }
+    }
+
+    showChoiceQuestion(questionData) {
         let variants = questionData.variants.slice();
         variants.push(questionData.answer)
         variants = [...new Set(variants)]
@@ -98,33 +108,41 @@ class Questionnaire extends React.Component {
                 question={questionData.question}
                 correctAnswer={questionData.answer}
                 variants={variants}
-                answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)}/>
+                answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)} />
 
-            <div style={{marginTop: 20}} className="d-flex justify-content-center">
-                <div className="progress" style={{width: 1000}}>
-                    <div className="progress-bar progress-bar-striped" role="progressbar" style={{width: doneBarWidth + '%'}}>
+            <div style={{ marginTop: 20 }} className="d-flex justify-content-center">
+                <div className="progress" style={{ width: 1000 }}>
+                    <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: doneBarWidth + '%' }}>
                     </div>
                 </div>
             </div>
         </div>;
     }
 
-    finishQuestionnaire() {
-        setTimeout(() => this.props.answeredToQuestions(), 6000);
-        return (<FinalPage score={this.calculateFinalScore()}/>);
+    showWritingQuestion(questionData) {
+        return (
+            <WritingQuestion
+                question={questionData.question}
+                validAnswers={questionData.validAnswers}
+                answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)}/>);
     }
 
-    calculateFinalScore(){
-        return this.state.numberOfQuestions/ this.state.numberOfAtempts;
+    finishQuestionnaire() {
+        setTimeout(() => this.props.answeredToQuestions(), 6000);
+        return (<FinalPage score={this.calculateFinalScore()} />);
+    }
+
+    calculateFinalScore() {
+        return this.state.numberOfQuestions / this.state.numberOfAtempts;
     }
 
     render() {
         const questionData = this.state.questions[this.state.currentQuestion];
         let questionnaire = null;
 
-        if(this.state.numberOfQuestions === 0){
+        if (this.state.numberOfQuestions === 0) {
             questionnaire =
-                <div style={{marginTop: 40}} className="spinner-border text-primary" role="status">
+                <div style={{ marginTop: 40 }} className="spinner-border text-primary" role="status">
                     <span className="sr-only">Loading...</span>
                 </div>
         }

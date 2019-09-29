@@ -1,6 +1,7 @@
 import React from 'react';
 import Answer from './Answer';
 import ResultAlert from './ResultAlert';
+import QuestionLabel from './QuestionLabel';
 
 
 class ChoiceQuestion extends React.Component {
@@ -50,10 +51,8 @@ class ChoiceQuestion extends React.Component {
     render() {
         return (
             <div>
-                <div className="p-3 mb-2 bg-info text-white">
-                    <h1><strong>{this.props.question}</strong></h1>
-                </div>
-                <ResultAlert answered={this.state.selectedAnswer}correct={this.state.correct} />}
+                <QuestionLabel>{this.props.question}</QuestionLabel>
+                <ResultAlert answered={this.state.selectedAnswer}correct={this.state.correct} />
                 <div className="btn-group-vertical">
                     {this.displayVariants()}
                 </div>

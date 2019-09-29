@@ -12,7 +12,7 @@ describe('Questionnaire test', () => {
     let questionnaire;
     beforeEach(() => {
         mockAxios.reset();
-        questionnaire = shallow(<Questionnaire/>);
+        questionnaire = shallow(<Questionnaire category={"/motherLanguageChoiceQuestions"}/>);
         let firstRequestInfo = mockAxios.lastReqGet();
         mockAxios.mockResponse(axiosResponse,firstRequestInfo);     
     });

@@ -28,11 +28,14 @@ class PomodoroPanel extends React.Component {
         if (!this.state.iterationFinished)
             return <TimerPanel timesUp={this.timesUp} />;
         else if (!this.state.chosenCategory) {
-            return <CategoryChooser
+            return (<CategoryChooser
                 onSkip={this.answeredToQuestions}
-                onChoice={this.categoryChoosen} />;
+            onChoice={this.categoryChoosen} />);
         } else {
-            return <Questionnaire category={this.state.chosenCategory} answeredToQuestions={this.answeredToQuestions} />;
+            return (
+                <Questionnaire
+                    category={this.state.chosenCategory}
+                    answeredToQuestions={this.answeredToQuestions} />);
         }
     }
 
