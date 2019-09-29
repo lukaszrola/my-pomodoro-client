@@ -2,7 +2,7 @@ import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Questionnaire from '../../../components/Questionnaire/Questionnaire';
-import WritingQuestion from '../../../components/Questionnaire/WritingQuestion';
+import ChoiceQuestion from '../../../components/Questionnaire/ChoiceQuestion';
 import FinalPage from '../../../components/Questionnaire/FinalPage';
 import mockAxios from 'jest-mock-axios';
 
@@ -22,7 +22,7 @@ describe('Questionnaire test', () => {
         expect(questionnaire.state().questions.length).toBe(2);
         expect(questionnaire.state().remainingQuestions).toBe(2);
         expect(questionnaire.state().numberOfAtempts).toBe(1);
-        expect(questionnaire.find(WritingQuestion)).toHaveLength(1);
+        expect(questionnaire.find(ChoiceQuestion)).toHaveLength(1);
     });
 
     test('One correct answer', async () => {
@@ -32,7 +32,7 @@ describe('Questionnaire test', () => {
         expect(questionnaire.state().questions.length).toBe(2);
         expect(questionnaire.state().remainingQuestions).toBe(1);
         expect(questionnaire.state().numberOfAtempts).toBe(2);
-        expect(questionnaire.find(WritingQuestion)).toHaveLength(1);
+        expect(questionnaire.find(ChoiceQuestion)).toHaveLength(1);
     });
 
     test('One incorrect answer', async () => {
@@ -42,7 +42,7 @@ describe('Questionnaire test', () => {
         expect(questionnaire.state().questions.length).toBe(2);
         expect(questionnaire.state().remainingQuestions).toBe(2);
         expect(questionnaire.state().numberOfAtempts).toBe(2);
-        expect(questionnaire.find(WritingQuestion)).toHaveLength(1);
+        expect(questionnaire.find(ChoiceQuestion)).toHaveLength(1);
     });
 
     test('Score is calculated correctly', async () => {

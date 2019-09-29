@@ -1,7 +1,7 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import WritingQuestion from '../../../components/Questionnaire/WritingQuestion';
+import ChoiceQuestion from '../../../components/Questionnaire/ChoiceQuestion';
 import Answer from '../../../components/Questionnaire/Answer';
 import ResultAlert from '../../../components/Questionnaire/ResultAlert';
 
@@ -14,7 +14,7 @@ describe('Question test', () => {
     let question;
     
     beforeEach(() => {
-        question = shallow(<WritingQuestion question={questionSentence}
+        question = shallow(<ChoiceQuestion question={questionSentence}
             correctAnswer={correctAnswer}
             variants={variants}
             answered={answerHandler} />);

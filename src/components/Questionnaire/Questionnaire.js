@@ -1,5 +1,5 @@
 import React from 'react';
-import WritingQuestion from './WritingQuestion';
+import ChoiceQuestion from './ChoiceQuestion';
 import FinalPage from './FinalPage'
 import axios from '../../axios-questions';
 
@@ -94,7 +94,7 @@ class Questionnaire extends React.Component {
         let doneBarWidth = Math.round(100 * (statistics.answered / statistics.total));
 
         return <div>
-            <WritingQuestion
+            <ChoiceQuestion
                 question={questionData.question}
                 correctAnswer={questionData.answer}
                 variants={variants}

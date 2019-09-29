@@ -3,7 +3,7 @@ import Answer from './Answer';
 import ResultAlert from './ResultAlert';
 
 
-class WritingQuestion extends React.Component {
+class ChoiceQuestion extends React.Component {
 
     state = {
         selectedAnswer: '',
@@ -61,4 +61,4 @@ class WritingQuestion extends React.Component {
     }
 }
 
-export default WritingQuestion;
+export default ChoiceQuestion;
