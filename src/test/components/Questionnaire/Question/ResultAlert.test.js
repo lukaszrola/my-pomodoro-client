@@ -1,8 +1,8 @@
 import React from 'react';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ResultAlert from '../../../components/Questionnaire/ResultAlert';
-import Alert from '../../../components/Questionnaire/Alert'
+import ResultAlert from '../../../../components/Questionnaire/Question/ResultAlert';
+import Alert from '../../../../components/Questionnaire/Question/Alert'
 
 configure({adapter:new Adapter()});
 

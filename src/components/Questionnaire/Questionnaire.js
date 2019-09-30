@@ -1,6 +1,6 @@
 import React from 'react';
-import ChoiceQuestion from './ChoiceQuestion';
-import WritingQuestion from './WritingQuestion'
+import ChoiceQuestion from './Question/ChoiceQuestion';
+import WritingQuestion from './Question/WritingQuestion'
 import FinalPage from './FinalPage'
 import axios from '../../axios-questions';
 

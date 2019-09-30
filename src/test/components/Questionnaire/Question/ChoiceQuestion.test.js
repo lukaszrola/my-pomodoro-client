@@ -1,9 +1,9 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ChoiceQuestion from '../../../components/Questionnaire/ChoiceQuestion';
-import Answer from '../../../components/Questionnaire/Answer';
-import ResultAlert from '../../../components/Questionnaire/ResultAlert';
+import ChoiceQuestion from '../../../../components/Questionnaire/Question/ChoiceQuestion';
+import Answer from '../../../../components/Questionnaire/Question/Answer';
+import ResultAlert from '../../../../components/Questionnaire/Question/ResultAlert';
 
 configure({ adapter: new Adapter() });
 
