@@ -1,9 +1,9 @@
 import React from 'react';
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Question from '../../../components/Questionnaire/Question';
-import Answer from '../../../components/Questionnaire/Answer';
-import Alert from '../../../components/Questionnaire/Alert';
+import ChoiceQuestion from '../../../../components/Questionnaire/Question/ChoiceQuestion';
+import Answer from '../../../../components/Questionnaire/Question/Answer';
+import ResultAlert from '../../../../components/Questionnaire/Question/ResultAlert';
 
 configure({ adapter: new Adapter() });
 
@@ -14,7 +14,7 @@ describe('Question test', () => {
     let question;
     
     beforeEach(() => {
-        question = shallow(<Question question={questionSentence}
+        question = shallow(<ChoiceQuestion question={questionSentence}
             correctAnswer={correctAnswer}
             variants={variants}
             answered={answerHandler} />);
@@ -23,7 +23,7 @@ describe('Question test', () => {
    
     test('should render question correctly', () => {
         expect(question.find(Answer)).toHaveLength(3)
-        expect(question.find(Alert)).toHaveLength(0)
+        expect(question.find(ResultAlert)).toHaveLength(1)
     });
 
     test('should render correct answer', () => {
@@ -31,7 +31,7 @@ describe('Question test', () => {
 
         expect(question.state('correct')).toBe(true);
         expect(question.find(Answer)).toHaveLength(3)
-        expect(question.find(Alert)).toHaveLength(1)
+        expect(question.find(ResultAlert)).toHaveLength(1)
     });
 
     test('should render incorrect answer', () => {
@@ -39,7 +39,7 @@ describe('Question test', () => {
 
         expect(question.state('correct')).toBe(false);
         expect(question.find(Answer)).toHaveLength(3)
-        expect(question.find(Alert)).toHaveLength(1)
+        expect(question.find(ResultAlert)).toHaveLength(1)
     });
 
     const answerHandler = (answerResult) => {}
