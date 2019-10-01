@@ -40,4 +40,13 @@ describe('Writing Question', () => {
         expect(writingQuestion.state().correct).toBe(true);         
     });
 
+    test('Invalid answer', () => {
+        writingQuestion.instance().typeAnswer('invalid answer');
+        writingQuestion.instance().handleAnswer();
+
+        expect(writingQuestion.find(ResultAlert)).toHaveLength(1);
+        expect(writingQuestion.state().answered).toBe(true);
+        expect(writingQuestion.state().correct).toBe(false);         
+    });
+
 });
