@@ -41,7 +41,7 @@ describe('Questionnaire test', () => {
   });
 
   test('One correct answer', async () => {
-    questionnaire.instance().handleAnswerChoice(true);
+    questionnaire.instance().checkAnswer(true);
 
     expect(questionnaire.state().numberOfQuestions).toBe(2);
     expect(questionnaire.state().questions.length).toBe(2);
@@ -51,7 +51,7 @@ describe('Questionnaire test', () => {
   });
 
   test('One incorrect answer', async () => {
-    questionnaire.instance().handleAnswerChoice(false);
+    questionnaire.instance().checkAnswer(false);
 
     expect(questionnaire.state().numberOfQuestions).toBe(2);
     expect(questionnaire.state().questions.length).toBe(2);
@@ -61,10 +61,10 @@ describe('Questionnaire test', () => {
   });
 
   test('Score is calculated correctly', async () => {
-    questionnaire.instance().handleAnswerChoice(false);
-    questionnaire.instance().handleAnswerChoice(true);
-    questionnaire.instance().handleAnswerChoice(false);
-    questionnaire.instance().handleAnswerChoice(true);
+    questionnaire.instance().checkAnswer(false);
+    questionnaire.instance().checkAnswer(true);
+    questionnaire.instance().checkAnswer(false);
+    questionnaire.instance().checkAnswer(true);
 
     expect(questionnaire.state().numberOfQuestions).toBe(2);
     expect(questionnaire.state().questions.length).toBe(2);

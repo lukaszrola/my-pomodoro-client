@@ -1,7 +1,9 @@
 import React from 'react';
 import ChoiceQuestion from './Question/ChoiceQuestion';
-import WritingQuestion from './Question/WritingQuestion'
-import FinalPage from './FinalPage'
+import WritingQuestion from './Question/WritingQuestion';
+import FinalPage from './FinalPage';
+import ProgressBar from '../Utils/ProgressBar';
+import Spinner from '../Utils/Spinner';
 import axios from '../../axios-questions';
 
 class Questionnaire extends React.Component {
@@ -28,7 +30,8 @@ class Questionnaire extends React.Component {
                     numberOfQuestions: numberOfQuestions,
                     remainingQuestions: remainingQuestions
                 });
-            }).finally(response => {
+            }).catch(response => {
+                console.error("Something went wrong with getting questions")
             })
     }
 
@@ -36,7 +39,7 @@ class Questionnaire extends React.Component {
         return { ...question, answeredCorrectly: false };
     }
 
-    handleAnswerChoice(answerWasCorrect) {
+    checkAnswer(answerWasCorrect) {
         let remainingQuestions = this.state.remainingQuestions;
         if (answerWasCorrect) {
             const questionsToUpdate = this.state.questions.slice();
@@ -52,19 +55,8 @@ class Questionnaire extends React.Component {
         }
     }
 
-    getStatistics() {
-        let total = this.state.questions.length;
-        let answered = this.state.questions.filter(q => q.answeredCorrectly === true).length;
-        return {
-            total: total,
-            answered: answered,
-            remaining: total - answered
-        }
-    }
-
     findNextQuestion() {
-        let newCurrentQuestion = this.findNextQuestionToAnswer(this.state.currentQuestion);
-        return newCurrentQuestion;
+        return this.findNextQuestionToAnswer(this.state.currentQuestion);
     }
 
     findNextQuestionToAnswer(questionNumber) {
@@ -86,48 +78,38 @@ class Questionnaire extends React.Component {
 
     showQuestion(questionData) {
         if (this.props.category === "/writingQuestions") {
-            return this.showWritingQuestion(questionData);
+            return this.writingQuestion(questionData);
         }
         if (this.props.category === "/motherLanguageChoiceQuestions" || this.props.category === "/foreignLanguageChoiceQuestions") {
-            return this.showChoiceQuestion(questionData);
+            return this.choiceQuestion(questionData);
         }
     }
 
-    showChoiceQuestion(questionData) {
+    choiceQuestion(questionData) {
         let variants = questionData.variants.slice();
         variants.push(questionData.answer)
         variants = [...new Set(variants)]
         variants.sort((a, b) => { return 0.5 - Math.random() });
 
-        let statistics = this.getStatistics();
-
-        let doneBarWidth = Math.round(100 * (statistics.answered / statistics.total));
-
-        return <div>
+        return (
             <ChoiceQuestion
                 question={questionData.question}
                 correctAnswer={questionData.answer}
                 variants={variants}
-                answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)} />
+                answered={(answerWasCorrect) => this.checkAnswer(answerWasCorrect)} />);
 
-            <div style={{ marginTop: 20 }} className="d-flex justify-content-center">
-                <div className="progress" style={{ width: 1000 }}>
-                    <div className="progress-bar progress-bar-striped" role="progressbar" style={{ width: doneBarWidth + '%' }}>
-                    </div>
-                </div>
-            </div>
-        </div>;
+
     }
 
-    showWritingQuestion(questionData) {
+    writingQuestion(questionData) {
         return (
             <WritingQuestion
                 question={questionData.question}
                 validAnswers={questionData.validAnswers}
-                answered={(answerWasCorrect) => this.handleAnswerChoice(answerWasCorrect)}/>);
+                answered={(answerWasCorrect) => this.checkAnswer(answerWasCorrect)} />);
     }
 
-    finishQuestionnaire() {
+    finalPage() {
         setTimeout(() => this.props.answeredToQuestions(), 6000);
         return (<FinalPage score={this.calculateFinalScore()} />);
     }
@@ -136,24 +118,34 @@ class Questionnaire extends React.Component {
         return this.state.numberOfQuestions / this.state.numberOfAtempts;
     }
 
-    render() {
-        const questionData = this.state.questions[this.state.currentQuestion];
-        let questionnaire = null;
+    showQuestionnaire(questionData) {
+        const total = this.state.questions.length;
+        const answered = this.state.questions.filter(q => q.answeredCorrectly === true).length;
+        return (<div>
+            {this.showQuestion(questionData)}
+            <ProgressBar done={answered} total={total} />
+        </div>);
+    }
 
-        if (this.state.numberOfQuestions === 0) {
-            questionnaire =
-                <div style={{ marginTop: 40 }} className="spinner-border text-primary" role="status">
-                    <span className="sr-only">Loading...</span>
-                </div>
+    notFinished() {
+        return this.state.remainingQuestions > 0;
+    }
+
+    questionsNotLoaded() {
+        return this.state.numberOfQuestions === 0;
+    }
+
+    render() {
+        if (this.questionsNotLoaded()) {
+            return <Spinner />
         }
-        else if (this.state.remainingQuestions > 0) {
-            questionnaire = this.showQuestion(questionData);
+        else if (this.notFinished()) {
+            const questionData = this.state.questions[this.state.currentQuestion];
+            return this.showQuestionnaire(questionData);
         }
         else {
-            questionnaire = this.finishQuestionnaire();
+            return this.finalPage();
         }
-
-        return (questionnaire);
     }
 }
 
