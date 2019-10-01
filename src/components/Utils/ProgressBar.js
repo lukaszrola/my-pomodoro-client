@@ -9,7 +9,6 @@ const progressBar = (props) => {
                 </div>
             </div>
         </div>)
-
 }
 
 export default progressBar;
