@@ -2,8 +2,8 @@ import React from 'react';
 import ChoiceQuestion from './Question/ChoiceQuestion';
 import WritingQuestion from './Question/WritingQuestion';
 import FinalPage from './FinalPage';
-import ProgressBar from './ProgressBar';
-import Spinner from './Spinner';
+import ProgressBar from '../Utils/ProgressBar';
+import Spinner from '../Utils/Spinner';
 import axios from '../../axios-questions';
 
 class Questionnaire extends React.Component {
