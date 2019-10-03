@@ -55,15 +55,15 @@ There are two possibilities:
 ---
 ## How to use application
 ### 1. Set time of pomodoro
-![picture alt](./application-screens/TimeProvider.png)
+![picture alt](/application-screens/TimeProvider.PNG)
 
 ### 2. Start doing yur tasks till time runs out
-![picture alt](/application-screens/Timer.png)
+![picture alt](/application-screens/Timer.PNG)
 
 ### 3. When time is finished choose type of questions
-![picture alt](application-screens/CategoryChooser.png)
+![picture alt](/application-screens/CategoryChooser.PNG)
 
 ### 4. Answer to questions
-![picture alt](application-screens/Questions.png)
+![picture alt](/application-screens/Questions.PNG)
 
 ### 5. Start next iteration
