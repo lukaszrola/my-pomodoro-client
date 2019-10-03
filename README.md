@@ -55,7 +55,7 @@ There are two possibilities:
 ---
 ## How to use application
 ### 1. Set time of pomodoro
-![picture alt](application-screens/TimeProvider.png)
+![picture alt](./application-screens/TimeProvider.png)
 
 ### 2. Start doing yur tasks till time runs out
 ![picture alt](application-screens/Timer.png)
