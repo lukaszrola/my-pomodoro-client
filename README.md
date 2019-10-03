@@ -58,7 +58,7 @@ There are two possibilities:
 ![picture alt](./application-screens/TimeProvider.png)
 
 ### 2. Start doing yur tasks till time runs out
-![picture alt](application-screens/Timer.png)
+![picture alt](/application-screens/Timer.png)
 
 ### 3. When time is finished choose type of questions
 ![picture alt](application-screens/CategoryChooser.png)
