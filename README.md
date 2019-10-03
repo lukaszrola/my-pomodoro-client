@@ -6,7 +6,7 @@ Purpose of this application is efficient learning of new words during workday. A
 
 * **`Pomodoro`** - method to efficient work in short iterations
   * https://en.wikipedia.org/wiki/Pomodoro_Technique
-* **`Supememo`** - method to learning new thing in most effective way
+* **`Supermemo`** - method to learning new thing in most effective way
   * https://en.wikipedia.org/wiki/SuperMemo
 
 ## Aplication available  on Heroku
