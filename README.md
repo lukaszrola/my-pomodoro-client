@@ -36,7 +36,7 @@ Run unit test
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### `docker-build`
+### `npm run-script docker-build`
 
 Build docker image `rolalukasz1992/my-pomodoro-client`
 
