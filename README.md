@@ -9,7 +9,7 @@ Purpose of this application is efficient learning of new words during workday. A
 * **`Supermemo`** - method to learning new thing in most effective way
   * https://en.wikipedia.org/wiki/SuperMemo
 
-## Aplication available  on Heroku
+## Application available  on Heroku
 Newest version of application is deployed on heroku:
 * https://my-pomodoro-client.herokuapp.com/
 ---
