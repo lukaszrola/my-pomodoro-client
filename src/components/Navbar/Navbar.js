@@ -1,7 +1,7 @@
 import React from "react";
 import tomatoImage from "../../images/tomato.png";
 
-const toolbar = props => {
+const navbar = props => {
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-info mb-2">
       <a class="navbar-brand" href="/">
@@ -11,4 +11,4 @@ const toolbar = props => {
   );
 };
 
-export default toolbar;
+export default navbar;
