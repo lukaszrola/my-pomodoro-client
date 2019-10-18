@@ -1,4 +1,6 @@
 import React from "react";
+import Title from "../Utils/Title";
+import Button from "../Utils/Button";
 
 const timerPanel = props => {
   const runPomodoroWithNMinutes = numberOfMinutes => {
@@ -8,33 +10,21 @@ const timerPanel = props => {
 
   return (
     <div>
-      <b className="display-2 font-weight-bolder">Set Pomodoro time</b>
-      <div className={"m-2"}>
-        <button
-          type="button"
-          className="btn btn-info btn-lg m-4"
-          onClick={() => runPomodoroWithNMinutes(5)}
-        >
-          <b>SHORT</b> (5 minutes)
-        </button>
-        <button
-          type="button"
-          className="btn btn-info btn-lg m-4"
-          onClick={() => runPomodoroWithNMinutes(25)}
-        >
-          <b>MEDIUM</b>(25 minutes)
-        </button>
-        <button
-          type="button"
-          className="btn btn-info btn-lg m-4"
-          onClick={() => runPomodoroWithNMinutes(45)}
-        >
-          <b>LONG</b>(45 minutes)
-        </button>
+      <Title>Set Pomodoro time</Title>
+      <div className={"btn-group mb-4"}>
+        <Button onClick={() => runPomodoroWithNMinutes(5)}>
+          <b>SHORT</b> (5&nbsp;min)
+        </Button>
+        <Button onClick={() => runPomodoroWithNMinutes(25)}>
+          <b>MEDIUM</b> (25&nbsp;min)
+        </Button>
+        <Button onClick={() => runPomodoroWithNMinutes(45)}>
+          <b>LONG</b> (45&nbsp;min)
+        </Button>
       </div>
       <div>
         <form
-          className="d-flex justify-content-center input-group"
+          className="d-flex justify-content-center input-group mb-4"
           onSubmit={() => props.handleStart()}
         >
           <input
@@ -55,12 +45,8 @@ const timerPanel = props => {
             placeholder="Seconds"
             onChange={e => props.secondsChanged(e.target.value)}
           />
-          <input
-            type="submit"
-            className="btn btn-info btn-lg"
-            value="CUSTOM TIME"
-          />
         </form>
+        <Button onClick={() => props.handleStart()}>CUSTOM TIME</Button>
       </div>
     </div>
   );
