@@ -11,21 +11,20 @@ const timerPanel = props => {
   return (
     <div>
       <Title>Set Pomodoro time</Title>
-      <div className={"btn-group"}>
+      <div className={"btn-group mb-4"}>
         <Button onClick={() => runPomodoroWithNMinutes(5)}>
-          <b>SHORT</b> (5 min)
+          <b>SHORT</b> (5&nbsp;min)
         </Button>
         <Button onClick={() => runPomodoroWithNMinutes(25)}>
-          <b>MEDIUM</b>
-          (25 min)
+          <b>MEDIUM</b> (25&nbsp;min)
         </Button>
         <Button onClick={() => runPomodoroWithNMinutes(45)}>
-          <b>LONG</b>(45 min)
+          <b>LONG</b> (45&nbsp;min)
         </Button>
       </div>
       <div>
         <form
-          className="d-flex justify-content-center input-group"
+          className="d-flex justify-content-center input-group mb-4"
           onSubmit={() => props.handleStart()}
         >
           <input
