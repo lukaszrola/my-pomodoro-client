@@ -1,10 +1,14 @@
 import React from "react";
+import Card from "../Utils/Card/Card";
+import CardBody from "../Utils/Card/CardBody";
 
 const categoryButton = props => {
   return (
-    <button className="btn btn-info btn-lg m-4" onClick={() => props.onClick()}>
-      {props.children}
-    </button>
+    <Card onClick={() => props.onClick()}>
+      <CardBody title={props.title} type={props.type}>
+        {props.children}
+      </CardBody>
+    </Card>
   );
 };
 

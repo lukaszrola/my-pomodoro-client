@@ -1,22 +1,49 @@
-import React from 'react';
-import CategoryButton from './CategoryButton';
+import React from "react";
+import CategoryButton from "./CategoryButton";
+import Title from "../Utils/Title";
 
-const categoryChooser = (props) => {
-    const categoriesToDisplay = [];
-    categoriesToDisplay.push(
-        <CategoryButton onClick={() => props.onChoice("/motherLanguageChoiceQuestions")}>Mother language choice</CategoryButton>);
-    categoriesToDisplay.push(
-        <CategoryButton onClick={() => props.onChoice("/foreignLanguageChoiceQuestions")}>Foreign language choice</CategoryButton>);
-    categoriesToDisplay.push(
-        <CategoryButton onClick={() => props.onChoice("/writingQuestions")}>Writing question</CategoryButton>);
-    categoriesToDisplay.push(
-        <button className="btn btn-warning btn-lg m-4" onClick={() => props.onSkip()}>Skip learning</button>);
+const categoryChooser = props => {
+  const categoriesToDisplay = [];
+  categoriesToDisplay.push(
+    <CategoryButton
+      onClick={() => props.onChoice("/motherLanguageChoiceQuestions")}
+      title="Mother language choice"
+    >
+      Choose correct answer in your mother language
+    </CategoryButton>
+  );
+  categoriesToDisplay.push(
+    <CategoryButton
+      title="Foreign language choice"
+      onClick={() => props.onChoice("/foreignLanguageChoiceQuestions")}
+    >
+      Choose correct answer in foreign language
+    </CategoryButton>
+  );
+  categoriesToDisplay.push(
+    <CategoryButton
+      title="Writing question"
+      onClick={() => props.onChoice("/writingQuestions")}
+    >
+      Write correct answer in foreign language
+    </CategoryButton>
+  );
+  categoriesToDisplay.push(
+    <CategoryButton
+      title="Skip learning"
+      onClick={() => props.onSkip()}
+      type="warning"
+    >
+      Don't do tasks after this iteration
+    </CategoryButton>
+  );
 
-    return (
-    <div>
-        <p className="display-2 font-weight-bolder">Choose category of task</p>
-        <div className="btn-group-vertical">{categoriesToDisplay}</div>
-    </div>);
-}
+  return (
+    <div className="container">
+      <Title>Choose category</Title>
+      {categoriesToDisplay}
+    </div>
+  );
+};
 
 export default categoryChooser;
