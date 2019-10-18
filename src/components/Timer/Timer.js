@@ -1,4 +1,8 @@
-import React from 'react';
+import React from "react";
+import Title from "../Utils/Title";
+import Button from "../Utils/Button";
+import Time from "./Time";
+import ButtonGroup from "../Utils/ButtonGroup";
 
 class Timer extends React.Component {
   constructor(props) {
@@ -29,25 +33,24 @@ class Timer extends React.Component {
     if (!this.state.paused && this.state.totalSeconds > 0) {
       const decreasedTime = this.state.totalSeconds - 1;
       this.setState({ totalSeconds: decreasedTime });
-    }
-    else if (this.state.totalSeconds === 0) {
+    } else if (this.state.totalSeconds === 0) {
       this.timesUp();
     }
   }
 
   getHours() {
     let hours = Math.floor(this.state.totalSeconds / 3600);
-    return hours > 9 ? hours : '0' + hours;
+    return hours > 9 ? hours : "0" + hours;
   }
 
   getMinutes() {
     let minutes = Math.floor((this.state.totalSeconds % 3600) / 60);
-    return minutes > 9 ? minutes : '0' + minutes;
+    return minutes > 9 ? minutes : "0" + minutes;
   }
 
   getSeconds() {
     let seconds = this.state.totalSeconds % 60;
-    return seconds > 9 ? seconds : '0' + seconds;
+    return seconds > 9 ? seconds : "0" + seconds;
   }
 
   handlePause() {
@@ -63,30 +66,38 @@ class Timer extends React.Component {
     this.setState({ totalSeconds: resetTime });
   }
 
-  handleSkipTimer(){
-    this.setState({totalSeconds: 0})
+  handleSkipTimer() {
+    this.setState({ totalSeconds: 0 });
     this.timesUp();
   }
 
-  timesUp(){
+  timesUp() {
     clearInterval(this.state.intervalId);
     this.props.timesUp();
   }
 
   render() {
-    const pauseButton = <button className="btn btn-info btn-lg m-4" onClick={() => this.handlePause()}>Pause</button>;
-    const startButton = <button className="btn btn-info btn-lg m-4" onClick={() => this.handleStart()}>Start</button>;
+    const pauseButton = (
+      <Button onClick={() => this.handlePause()}>Pause</Button>
+    );
+    const startButton = (
+      <Button onClick={() => this.handleStart()}>Start</Button>
+    );
     return (
       <div>
-        <div>
-          <p className="display-3 font-weight-bolder text-info">Time is started</p>
-          <div className="display-3 text-info"><strong>{this.getHours()} : {this.getMinutes()} : {this.getSeconds()}</strong></div>
+        <Title>Time is started</Title>
+        <Time
+          hours={this.getHours()}
+          minutes={this.getMinutes()}
+          seconds={this.getSeconds()}
+        />
+        <ButtonGroup>
           {this.state.paused ? startButton : pauseButton}
-          <button className="btn btn-info btn-lg m-4" onClick={() => this.handleReset()}>Reset</button>
-          <button className="btn btn-info btn-lg m-4" onClick={() => this.handleSkipTimer()}>Skip timer</button>
-        </div>
+          <Button onClick={() => this.handleReset()}>Reset</Button>
+          <Button onClick={() => this.handleSkipTimer()}>Skip timer</Button>
+        </ButtonGroup>
       </div>
-    )
+    );
   }
 }
 
