@@ -7,7 +7,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <PomodoroPanel />
+      <div className="container">
+        <PomodoroPanel />
+      </div>
     </div>
   );
 }

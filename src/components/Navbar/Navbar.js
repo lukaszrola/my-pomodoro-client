@@ -3,9 +3,9 @@ import tomatoImage from "../../images/tomato.png";
 
 const navbar = props => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-info mb-2">
-      <a class="navbar-brand" href="/">
-        <img class="logo" src={tomatoImage} height="40" /> My Pomodoro
+    <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-info mb-2">
+      <a className="navbar-brand" href="/">
+        <img className="logo" src={tomatoImage} height="40" /> My Pomodoro
       </a>
     </nav>
   );
