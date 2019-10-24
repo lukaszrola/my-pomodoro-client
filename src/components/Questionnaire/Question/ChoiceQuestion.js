@@ -1,63 +1,67 @@
-import React from 'react';
-import Answer from './Answer';
-import ResultAlert from './ResultAlert';
-import QuestionLabel from './QuestionLabel';
-
+import React from "react";
+import Answer from "./Answer";
+import ResultAlert from "./ResultAlert";
+import Title from "../../Utils/Title";
+import ButtonGroup from "../../Utils/ButtonGroup";
+import Container from "../../Utils/Container";
 
 class ChoiceQuestion extends React.Component {
+  state = {
+    selectedAnswer: "",
+    correct: false
+  };
 
-    state = {
-        selectedAnswer: '',
-        correct: false
-    }
+  componentWillReceiveProps() {
+    this.setState({ selectedAnswer: "" });
+  }
 
-    componentWillReceiveProps() {
-        this.setState({ selectedAnswer: '' });
-    }
+  displayVariants = () => {
+    const answers = this.props.variants;
+    return answers.map(a => (
+      <Answer
+        color={this.calculateColor(a)}
+        key={a}
+        answer={a}
+        clicked={choice => this.handleChoice(choice)}
+      />
+    ));
+  };
 
-    displayVariants = () => {
-        const answers = this.props.variants;
-        return answers.map(a => <Answer color={this.calculateColor(a)} key={a} answer={a} clicked={(choice) => this.handleChoice(choice)} />);
-    }
+  handleChoice = choice => {
+    let choiceWasCorrect = this.choiceIsCorrect(choice);
+    this.setState({
+      selectedAnswer: choice,
+      correct: choiceWasCorrect
+    });
+    setTimeout(() => this.props.answered(choiceWasCorrect), 1000);
+  };
 
-    handleChoice = (choice) => {
-        let choiceWasCorrect = this.choiceIsCorrect(choice);
-        this.setState({
-            selectedAnswer: choice,
-            correct: choiceWasCorrect
-        });
-        setTimeout(() => this.props.answered(choiceWasCorrect), 1000);
-    }
+  choiceIsCorrect = choice => {
+    return choice === this.props.correctAnswer;
+  };
 
-    choiceIsCorrect = (choice) => {
-        return choice === this.props.correctAnswer;
-    }
+  calculateColor(answer) {
+    if (this.state.selectedAnswer !== answer)
+      return "btn btn-outline-info btn-lg";
+    else
+      return this.state.correct
+        ? "btn btn-success btn-lg"
+        : "btn btn-danger btn-lg";
+  }
 
-    calculateColor(answer) {
-        if (this.state.selectedAnswer !== answer)
-            return "btn btn-outline-info btn-lg";
-        else
-            return this.state.correct ? "btn btn-success btn-lg" : "btn btn-danger btn-lg";
-    }
-
-    calculateAlert() {
-        if (this.state.selectedAnswer) {
-            return <ResultAlert answered={this.state.selectedAnswer}
-                correct={this.state.correct} />
-        }
-        else return null;
-    }
-
-    render() {
-        return (
-            <div>
-                <QuestionLabel>{this.props.question}</QuestionLabel>
-                <ResultAlert answered={this.state.selectedAnswer}correct={this.state.correct} />
-                <div className="btn-group-vertical">
-                    {this.displayVariants()}
-                </div>
-            </div>)
-    }
+  render() {
+    return (
+      <Container>
+        <ResultAlert
+          answered={this.state.selectedAnswer}
+          correct={this.state.correct}
+          question="Choose correct variant"
+        />
+        <Title>{this.props.question}</Title>
+        <ButtonGroup vertical="true">{this.displayVariants()} </ButtonGroup>
+      </Container>
+    );
+  }
 }
 
 export default ChoiceQuestion;

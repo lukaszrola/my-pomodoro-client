@@ -1,7 +1,8 @@
 import React from "react";
 
 const buttonGroup = props => {
-  return <div className="btn-group mb-4">{props.children}</div>;
+  let buttonGroup = props.vertical ? "btn-group-vertical" : "btn-group";
+  return <div className={buttonGroup + " mb-4"}>{props.children}</div>;
 };
 
 export default buttonGroup;
