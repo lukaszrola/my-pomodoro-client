@@ -2,7 +2,7 @@ import React from "react";
 import Title from "../../Utils/Title";
 import ResultAlert from "./ResultAlert";
 import Container from "../../Utils/Container";
-import Button from "../../Utils/Button";
+import Button from "../../Utils/Buttons/Button";
 import InputGroup from "../../Utils/Inputs/InputGroup";
 import TextInput from "../../Utils/Inputs/TextInput";
 

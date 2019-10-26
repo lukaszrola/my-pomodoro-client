@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "../Utils/Title";
-import Button from "../Utils/Button";
-import ButtonGroup from "../Utils/ButtonGroup";
+import Button from "../Utils/Buttons/Button";
+import ButtonGroup from "../Utils/Buttons/ButtonGroup";
 
 const timerPanel = props => {
   const runPomodoroWithNMinutes = numberOfMinutes => {

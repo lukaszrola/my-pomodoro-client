@@ -2,7 +2,7 @@ import React from "react";
 import Choice from "./Choice";
 import ResultAlert from "./ResultAlert";
 import Title from "../../Utils/Title";
-import ButtonGroup from "../../Utils/ButtonGroup";
+import ButtonGroup from "../../Utils/Buttons/ButtonGroup";
 import Container from "../../Utils/Container";
 
 class ChoiceQuestion extends React.Component {
