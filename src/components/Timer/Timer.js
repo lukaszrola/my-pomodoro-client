@@ -1,8 +1,8 @@
 import React from "react";
 import Title from "../Utils/Title";
-import Button from "../Utils/Button";
+import Button from "../Utils/Buttons/Button";
 import Time from "./Time";
-import ButtonGroup from "../Utils/ButtonGroup";
+import ButtonGroup from "../Utils/Buttons/ButtonGroup";
 
 class Timer extends React.Component {
   constructor(props) {
