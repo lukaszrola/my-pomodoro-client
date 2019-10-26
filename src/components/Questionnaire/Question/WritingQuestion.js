@@ -1,6 +1,10 @@
 import React from "react";
 import Title from "../../Utils/Title";
 import ResultAlert from "./ResultAlert";
+import Container from "../../Utils/Container";
+import Button from "../../Utils/Button";
+import InputGroup from "../../Utils/Inputs/InputGroup";
+import TextInput from "../../Utils/Inputs/TextInput";
 
 class WritingQuestion extends React.Component {
   state = {
@@ -27,7 +31,7 @@ class WritingQuestion extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <ResultAlert
           answered={this.state.answered}
           correct={this.state.correct}
@@ -35,26 +39,18 @@ class WritingQuestion extends React.Component {
         />
         <Title>{this.props.question}</Title>
 
-        <div
-          className="d-flex justify-content-center input-group"
-          onSubmit={this.handleAnswer}
-        >
-          <input
-            type="text"
+        <InputGroup>
+          <TextInput
             name="answer"
             value={this.state.answer}
             placeholder="Type answer"
             onChange={e => this.typeAnswer(e.target.value)}
           />
-          <button
-            type="button"
-            class="btn btn-info"
-            onClick={() => this.handleAnswer()}
-          >
+          <Button onClick={() => this.handleAnswer()} margin="no">
             Answer
-          </button>
-        </div>
-      </div>
+          </Button>
+        </InputGroup>
+      </Container>
     );
   }
 }
