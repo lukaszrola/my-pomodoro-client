@@ -1,5 +1,5 @@
 import React from "react";
-import Answer from "./Answer";
+import Choice from "./Choice";
 import ResultAlert from "./ResultAlert";
 import Title from "../../Utils/Title";
 import ButtonGroup from "../../Utils/ButtonGroup";
@@ -18,10 +18,10 @@ class ChoiceQuestion extends React.Component {
   displayVariants = () => {
     const answers = this.props.variants;
     return answers.map(a => (
-      <Answer
-        color={this.calculateColor(a)}
+      <Choice
         key={a}
         answer={a}
+        selectionResult={this.calculateSelectionResult(a)}
         clicked={choice => this.handleChoice(choice)}
       />
     ));
@@ -40,13 +40,9 @@ class ChoiceQuestion extends React.Component {
     return choice === this.props.correctAnswer;
   };
 
-  calculateColor(answer) {
-    if (this.state.selectedAnswer !== answer)
-      return "btn btn-outline-info btn-lg";
-    else
-      return this.state.correct
-        ? "btn btn-success btn-lg"
-        : "btn btn-danger btn-lg";
+  calculateSelectionResult(answer) {
+    if (this.state.selectedAnswer !== answer) return "none";
+    else return this.state.correct ? "success" : "fail";
   }
 
   render() {
