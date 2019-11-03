@@ -3,6 +3,7 @@ import Title from "../Utils/Title";
 import Button from "../Utils/Buttons/Button";
 import Time from "./Time";
 import ButtonGroup from "../Utils/Buttons/ButtonGroup";
+import Content from "../Utils/Content";
 
 class Timer extends React.Component {
   constructor(props) {
@@ -84,7 +85,7 @@ class Timer extends React.Component {
       <Button onClick={() => this.handleStart()}>Start</Button>
     );
     return (
-      <div>
+      <Content>
         <Title>Time is started</Title>
         <Time
           hours={this.getHours()}
@@ -96,7 +97,7 @@ class Timer extends React.Component {
           <Button onClick={() => this.handleReset()}>Reset</Button>
           <Button onClick={() => this.handleSkipTimer()}>Skip timer</Button>
         </ButtonGroup>
-      </div>
+      </Content>
     );
   }
 }
