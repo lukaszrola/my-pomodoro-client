@@ -1,10 +1,11 @@
 import React from "react";
+import ExtraBigText from "../Utils/ExtraBigText";
 
 const time = props => {
   return (
-    <div className="display-4 text-secondary font-weight-bolder mb-4">
+    <ExtraBigText>
       {props.hours} : {props.minutes} : {props.seconds}
-    </div>
+    </ExtraBigText>
   );
 };
 
